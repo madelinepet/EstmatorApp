@@ -153,8 +153,6 @@ def review_quote_view(request):
 @login_required
 def send_quote(request, **kwargs):
     context = {}
-    # if request is not None:
-    #     context = RequestContext(request, context)
 
     quote = Quote.objects.get(pk=kwargs.get('pk'))
     client = Client.objects.get(pk=quote.client.pk)
