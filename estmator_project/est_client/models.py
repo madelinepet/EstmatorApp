@@ -44,7 +44,7 @@ class Company(models.Model):
 
 @python_2_unicode_compatible
 class Client(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=256)
     last_name = models.CharField(max_length=256)
     title = models.CharField(max_length=256)

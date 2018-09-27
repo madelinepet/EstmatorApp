@@ -17,7 +17,7 @@ class Category(models.Model):
 @python_2_unicode_compatible
 class Product(models.Model):
     # Inputs
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=256)
 
     # Piece Multipliers
@@ -55,8 +55,8 @@ def make_token():
 
 @python_2_unicode_compatible
 class Quote(models.Model):
-    user = models.ForeignKey(User, related_name='quotes')
-    client = models.ForeignKey(Client, related_name='quotes')
+    user = models.ForeignKey(User, related_name='quotes', on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, related_name='quotes', on_delete=models.CASCADE)
     name = models.CharField(max_length=256)
     date = models.DateField(auto_now_add=True)
     sub_total = models.IntegerField(blank=True, null=True)
@@ -116,8 +116,8 @@ class Quote(models.Model):
 
 
 class ProductProperties(models.Model):
-    quote = models.ForeignKey(Quote, null=True, blank=True)
-    product = models.ForeignKey(Product, null=True, blank=True)
+    quote = models.ForeignKey(Quote, null=True, blank=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
     count = models.IntegerField(blank=True, null=True)
 
     # Outputs
